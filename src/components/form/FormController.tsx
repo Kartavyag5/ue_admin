@@ -7,6 +7,8 @@ import Button from "../button/Button"
 import Datepicker from "../Input/DatePicker";
 import AddRoleFormController from "./addRoleFormController";
 import PuzzleWords from "../puzzle/PuzzleWords";
+import { useRouter } from 'next/router';
+import { getDetail} from "../../services/cognito";
 
 interface IFormInput {
   column2: any
@@ -35,6 +37,21 @@ const FormController = ({ column1, column2 = [], buttonProps, isAddRole, isFormD
   const { dirtyFields } = useFormState({
     control
   });
+  const router = useRouter();
+  const gameScheduleId = router.query.gameScheduleId;
+  const [hostRole, setHostRoles] = React.useState("");
+  const [hostCommId, setHostCommId] = useState<any>([]);
+  const handleHostRole = async() => {
+    const res = await getDetail();
+    setHostRoles(res.role.GAME_HOST);
+    setHostCommId(res);
+  }
+  const isFamilyOrResident = hostCommId?.role?.RESIDENT || hostCommId?.role?.FAMILY_OR_FRIEND
+  const SUPER_ADMIN = hostCommId?.role?.SUPER_ADMIN
+  const UE_CORP_ADMIN = hostCommId?.role?.UE_CORP_ADMIN
+  const ORGANIZATION_ADMIN = hostCommId?.role?.ORGANIZATION_ADMIN
+  const COMMUNITY_ADMIN = hostCommId?.role?.COMMUNITY_ADMIN
+  const GAME_HOST = hostCommId?.role?.GAME_HOST
 
   // const onSubmit: SubmitHandler<IFormInput> = data => {
   //   handleFormData(data)
@@ -44,7 +61,8 @@ const FormController = ({ column1, column2 = [], buttonProps, isAddRole, isFormD
 
 
   React.useEffect(() => {    
-    getDefaultFormData()
+    getDefaultFormData();
+    handleHostRole();
   }, [])
 
   React.useEffect(() => {    
@@ -126,13 +144,17 @@ const FormController = ({ column1, column2 = [], buttonProps, isAddRole, isFormD
 
                             ||
 
-                            newItem.inputType === "link" && <a href={newItem.defaultValue} target = "_blank" rel="noreferrer">{newItem.defaultValue}</a> ||
+                            newItem.name === "join_link" && isFamilyOrResident && <a href={newItem.defaultValue} target = "_blank" rel="noreferrer"> {newItem.defaultValue == undefined ? "No Link" : newItem.defaultValue} </a> ||
 
                             newItem.inputType === "checkBox" &&
 
                             <Input   {...field} checked = {newItem.checked && newItem.checked} onChange = {newItem.handleChange}  type={newItem.inputType} textarea={newItem.textarea} value={newItem.defaultValue} readOnly={newItem.readOnly} id={newItem.id} handleOnBlur={newItem.handleOnBlur} /> ||
-
-                            <Input {...field} value={newItem.defaultValue} type={newItem.inputType} readOnly={newItem.readOnly} id={newItem.id} />
+                            newItem.name === "first_name" && <Input {...field} value={newItem.defaultValue} type={newItem.inputType} readOnly={newItem.readOnly} id={newItem.id} /> ||
+                            newItem.name === "last_name" && <Input {...field} value={newItem.defaultValue} type={newItem.inputType} readOnly={newItem.readOnly} id={newItem.id} /> ||
+                            newItem.name === "email_id" && <Input {...field} value={newItem.defaultValue} type={newItem.inputType} readOnly={newItem.readOnly} id={newItem.id} /> ||
+                            newItem.name === "birth_year" && <Input {...field} value={newItem.defaultValue} type={newItem.inputType} readOnly={newItem.readOnly} id={newItem.id} /> ||
+			    newItem.name === "join_link" && <Input {...field} value={newItem.defaultValue} type={newItem.inputType} onChange = {newItem.handleChange} readOnly={newItem.readOnly} id={newItem.id} /> ||
+                            <Input {...field} value={newItem.defaultValue}  type={newItem.inputType} readOnly={newItem.readOnly} id={newItem.id}/>
 
                           }
                         </div>
@@ -261,7 +283,13 @@ const FormController = ({ column1, column2 = [], buttonProps, isAddRole, isFormD
       <div className={`${styles.flex_row} ${styles.btn_form_group} ${buttonCenter ? styles.button_center : ''} `}>
         {typeof buttonProps !== 'undefined' && buttonProps.map((item: any, index: any) => (
           <div className={styles.form_btn} key={index}>
-            <Button isJoiningWords={item.isJoiningWords} disabled = {item.isDisabled ? item.isDisabled : false} handleButtonClick={item.type === 'submit' ? handleSubmit(item.handleButtonClick) : item.handleButtonClick} ButtonText={item.value} type={item.type} />
+            {
+            SUPER_ADMIN === true || GAME_HOST === true || COMMUNITY_ADMIN === true || ORGANIZATION_ADMIN === true || UE_CORP_ADMIN === true
+            ? <Button isJoiningWords={item.isJoiningWords} disabled = {item.isDisabled ? item.isDisabled : false} handleButtonClick={item.type === 'submit' ? handleSubmit(item.handleButtonClick) : item.handleButtonClick} ButtonText={item.value} type={item.type} />
+            : 
+            <Button isJoiningWords={item.isJoiningWords} disabled = {true} handleButtonClick={item.type === 'submit' ? handleSubmit(item.handleButtonClick) : item.handleButtonClick} ButtonText={item.value} type={item.type} />
+            }
+            
           </div>
         ))}
       </div>

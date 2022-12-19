@@ -2,9 +2,8 @@ name: admin-panel-automated-deployment
 
 on:
   push:
-    branches: master
-  pull_request:
-    branches: master
+    branches:
+      - test
 
 jobs:
   build:
@@ -20,4 +19,4 @@ jobs:
       - name: Build React App
         run: npm install && CI=false npm run staticBuild
       - name: Deploy app build to S3 bucket
-        run: aws s3 sync ./out/ s3://www.utopiaexperiences.cloud --delete
+        run: aws s3 sync ./out/ s3://uegames.utopiaexperiences.cloud/V4 --delete

@@ -39,13 +39,11 @@ const Header = ({ isLogoutButton, isHelpButton }) => {
             localStorage.removeItem("permissionToken");
             localStorage.clear()
             sessionStorage.removeItem("accesstoken");
-            removeCookie("accesstoken", {domain:domain}); //TODO : find a proper way to clear cookies
-            removeCookie("idtoken",{domain:domain});
-            new Cookies().remove("accesstoken",{domain:domain});
-            new Cookies().remove("idtoken",{domain:domain});
-            // window.location.href = nextConfig.basePath;
-            window.location.href = Constants.rootPath; // TODO : fix for clearing route on logout
-
+            removeCookie("accesstoken",{domain: domain}); //TODO : find a proper way to clear cookies
+            removeCookie("idtoken", {domain: domain});
+            new Cookies().remove("accesstoken", {domain: domain});
+            new Cookies().remove("idtoken", {domain: domain});
+            window.location.href = nextConfig.basePath;
           }} />
         </div>
       )}

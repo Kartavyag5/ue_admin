@@ -11,6 +11,7 @@ import { getCommunityList, geTimezoneList } from "../../../../services/community
 import { gameLevelList } from "../../../../services/gameDataMaintanance";
 import { addOrEditSchedule, getCustomSpinnerSpace, getGameSchedules } from "../../../../services/gameSchedule";
 import { getHostList, getUserList } from "../../../../services/personService";
+import { getDetail} from "../../../../services/cognito";
 
 const AddScheduleForm = () => {
 
@@ -45,7 +46,18 @@ const AddScheduleForm = () => {
   const [isZoomGame, setIsZoomGame] = useState(is_zoom_game ? is_zoom_game : "2");
   const [resetHostSelection, setResetHostSelection] = useState(false);
   const [resetGameSelection, setResetGameSelection] = useState(false);
+  const [hostCommId, setHostCommId] = useState<any>([]);
+  const [link, setLink] = useState("");
+  const [gameHostRoleId, setGameHostRoleId] = useState<any>();
+  const handleHostCommunity = async() => {
+    const res = await getDetail();
+    setHostCommId(res)
+    setGameHostRoleId(res.user_role[0].role_id);
+  }
 
+  const isGameHost = hostCommId?.role?.GAME_HOST;
+  const isFamilyOrResident = hostCommId?.role?.RESIDENT || hostCommId?.role?.FAMILY_OR_FRIEND;
+  const isGameHostRoleId = gameHostRoleId;
 
 
   const [openPopup, setOpenPopup] = useState<popup>({
@@ -76,7 +88,9 @@ const AddScheduleForm = () => {
   let isDataSaved = useRef(false);
   let communityId = useRef();
 
-
+  useEffect(() => {
+    handleHostCommunity()
+  }, [])
 
   useEffect(() => {    
     (async () => {
@@ -170,10 +184,10 @@ const AddScheduleForm = () => {
     try {
       let reqData: hostListPayload = {
         community_id : commId,
-        is_zoom_game : +isZoomGame
+        is_zoom_game : 2
       };
 
-      if (hostIdSearchText.current !== "") reqData.email_id = hostIdSearchText.current;
+      if (hostIdSearchText.current !== "") reqData.host_list_query = hostIdSearchText.current;
       const res = await getHostList({ reqData });
       setHostIdList([...res.host_mail_list]);
       if (typeof res.total_count !== "undefined") totalHost.current = res.total_count;
@@ -230,6 +244,7 @@ const AddScheduleForm = () => {
       }
       const res = await getGameSchedules({ reqData });
       setDefaultData(res.game_schedule_list[0])
+      setLink(res.game_schedule_list[0]?.join_link)
       const players = res.game_schedule_list[0].players
       if (players?.length > 0)
         setSelectedPlayers({
@@ -281,7 +296,7 @@ const AddScheduleForm = () => {
 
   const hostIdOptionList = hostIdList.map(function (option) {
     return {
-      label: option.email_id,
+      label: option.first_name + " " + option.last_name + "," + " " + option.email_id,
       value: option.user_id,
     };
   });
@@ -364,6 +379,11 @@ const AddScheduleForm = () => {
     value ? setHostId(value.value) : setHostId("")
   }
 
+
+  const handleJoinLink = (value) => {
+    value ? setLink(value) : setLink("")
+  }
+
   const handleHostIdToggle = (isOpen) => {
     const isOpening = !isOpen;
     if (isOpening && hostIdSearchText.current.length) {
@@ -426,12 +446,12 @@ const AddScheduleForm = () => {
   }
 
 
-//  const handleCheckBoxChange = (value) => {
-//     !initalRender.current && setResetHostSelection(true); //avoid clearing value of host id filter on initial render
-//      setIsZoomGame(value)  
-//      console.log(isZoomGame);
-//      
-//  }
+  const handleCheckBoxChange = (value) => {
+     !initalRender.current && setResetHostSelection(true); //avoid clearing value of host id filter on initial render
+      setIsZoomGame(value)  
+      console.log(isZoomGame);
+      
+  }
 
 
   const handleSave = async (data) => {
@@ -464,7 +484,7 @@ const AddScheduleForm = () => {
     
        
     let mandatoryFieldMsg = [];
-    let fieldIndex = [0,5, 7, 8, 9, 10,12, 13, 14, 15, 16, 17, 18, 19,20]
+    let fieldIndex = [4, 6, 8, 9, 10, 11, 12, 13, 14, 15, 16]
     Object.entries(data).forEach(([key, value], index) => {      
       if ((typeof value === 'undefined' || value === '' || value === null) && !(fieldIndex.includes(index))) { //show mandatory field messege except the index which is defined above
         mandatoryFieldMsg.push(key)
@@ -492,10 +512,11 @@ const AddScheduleForm = () => {
         host_id: (data.host_id) ? data.host_id.value : "",
         custom_spinner_space: (data.custom_spinner_space) ? data.custom_spinner_space.value : "",
         game_level: (data.game_level) ? data.game_level.value : "",
+        join_link: link
       };
       if (typeof gameScheduleId !== "undefined") reqData.game_schedule_id = gameScheduleId;
       if (data.meeting_id) reqData.meeting_id = data.meeting_id;
-      if (data.zoom_link) reqData.zoom_link = data.zoom_link;
+      // if (data.zoom_link) reqData.zoom_link = data.zoom_link;
       if (data.player_1 && data.player_1 !== null) reqData.player_one_id = data.player_1.value;
       if (data.custom_player_name_1) reqData.player_one_name = data.custom_player_name_1;
       if (data.player_2 && data.player_2 !== null) reqData.player_two_id = data.player_2.value;
@@ -569,13 +590,13 @@ const AddScheduleForm = () => {
     {
       name: "Book Host",
       handleButtonClick: handleBookHost,
-      isDisabled: allowToEdit === 'true',
+      isDisabled: allowToEdit === 'true' || (isGameHost && isGameHostRoleId === 5) || isFamilyOrResident,
 
     },
     {
       name: "Add Person",
       handleButtonClick: handleAddPerson,
-      isDisabled: allowToEdit === 'true',
+      isDisabled: allowToEdit === 'true' || (isGameHost && isGameHostRoleId === 5) || isFamilyOrResident,
 
     },
   ];
@@ -608,6 +629,8 @@ const AddScheduleForm = () => {
             handleHostIdSearch={handleHostIdSearch}
             handleHostIdScroll={handleHostIdScroll}
             handleHostChange={handleHostChange}
+            handleJoinLink={handleJoinLink}
+            link={link}
             handleHostIdToggle={handleHostIdToggle}
             hostIdOptionList={hostIdOptionList}
             handlePlayerScroll={handlePlayerScroll}
@@ -632,12 +655,12 @@ const AddScheduleForm = () => {
             changeHostResetflag = {changeHostResetflag}
             resetGameSelection ={resetGameSelection}
             changeGameResetflag = {changeGameResetflag}
-            //handleCheckBoxChange = {handleCheckBoxChange}
+            handleCheckBoxChange = {handleCheckBoxChange}
             isFormDirty={isFormDirty}
             allowToEdit={allowToEdit ? (allowToEdit === "false" ? false : true) : false}
             allowToView={allowToView ? (allowToView === "false" ? false : true) : false}
-
-            //isZoomGame={isZoomGame}
+            hostCommId={hostCommId}
+            isZoomGame={isZoomGame}
           />}
       </div>
       {isPopupOpen && (

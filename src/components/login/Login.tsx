@@ -27,7 +27,7 @@ const LoginForm = ({ submitHandler, handleForgotPasswordBtn }) => {
       </div>
 
       <input type="button" className={`${styles.small_text} ${styles.btn_link}`}  onClick={() => handleForgotPasswordBtn()}   value="Forgot Password?" />
-
+      
       {/* <button type="button" onClick={() => openForgotPassword()} className={` ${styles.btn_link}  ${styles.btn} `} >
         <small className={styles.small_text}>Forgot Password? </small>
       </button> */}

@@ -84,6 +84,7 @@ type hostListPayload = {
   community_id: number,
   is_zoom_game: number,
   email_id?: string,
+  host_list_query?: string,
   limit?:number,
   page_number?:number
 }
@@ -213,8 +214,8 @@ type gameScheduleAddOrEditPayload = {
   player_three_name?:string,
   player_four_id?:number,
   player_four_name?:string,
-  is_zoom_game:number
-
+  is_zoom_game:number,
+  join_link?: string
 }
 
 type gameSchPuzzleCategoryPayload = {

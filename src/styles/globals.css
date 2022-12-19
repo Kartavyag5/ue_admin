@@ -435,7 +435,7 @@ hr:not([size]) {
 }
 
 .input-group-addon {
-  background: url("/calendar-icon.png") no-repeat scroll 50%;
+  background: url("/V4/calendar-icon.png") no-repeat scroll 50%;
 
   color: inherit;
   font-size: 14px;

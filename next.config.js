@@ -1,7 +1,8 @@
 module.exports = {
   reactStrictMode: true,
-  basePath: '',
-  assetPrefix: '',
+  basePath: '/V4',
+  assetPrefix: '/V4',
   domain: 'utopiaexperiences.cloud',
-  // trailingSlash: true,
+  // trailingSlash: true
+
 }

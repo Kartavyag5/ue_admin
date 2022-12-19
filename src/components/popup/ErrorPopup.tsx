@@ -4,7 +4,6 @@ import { AiFillCloseCircle } from 'react-icons/ai'
 import Button from "../button/Button";
 import { Cookies } from "react-cookie";
 import nextConfig from "../../../next.config";
-import Constants from "../../lib/Constants";
 
 interface props {
   bodyText: string;
@@ -62,9 +61,7 @@ class ErrorPopup extends React.PureComponent<props> {
     else {
       // TODO: Redirect to login page
       localStorage.removeItem("permissionToken")
-      // window.location.href = nextConfig.basePath;
-      window.location.href = Constants.rootPath; // TODO : fix for clearing route
-
+      window.location.href = nextConfig.basePath;
     }
   }
 

@@ -1,12 +1,29 @@
 import React from "react";
 import { getCommunityTimeZone } from "../../helper/dateTime";
 import FormController from "../form/FormController";
+import { useRouter } from "next/router";
 
 export default function AddSchedule({ ...props }) {
-
+  const router = useRouter()
+  const gameScheduleId = router.query.gameScheduleId;
   let data = props.defaultData;  
-  
+  const isGameHost = props?.hostCommId?.role?.GAME_HOST;
+  const isFamilyOrResident = props?.hostCommId?.role?.FAMILY_OR_FRIEND || props?.hostCommId?.role?.RESIDENT;
+  const isGameHostRoleId = props?.hostCommId?.user_role[0]?.role_id;
+
     const field_set_1 = [
+      // {
+      //   label: "Zoom",
+      //   column: [
+      //     {
+      //       name: "zoom",
+      //       inputType: "checkBox",
+      //       defaultValue: data ? data.is_zoom_game : "2",
+      //       handleChange : props.handleCheckBoxChange,
+      //       checked : data ? data.is_zoom_game === 1 ? true : false : false
+      //     },
+      //   ],
+      // },
     {
       label: "Community*",
       column: [
@@ -20,7 +37,9 @@ export default function AddSchedule({ ...props }) {
           setSearchText: props.handleCommunitySearch,
           handleChange:props.handleCommunityChange,
           defaultValue: typeof data !== "undefined" ? data.community_id : "",
-          handleToggle:props.handleCommunityToggle
+          handleToggle:props.handleCommunityToggle,
+          readOnly: isFamilyOrResident 
+          
         },
       ],
     },
@@ -39,6 +58,7 @@ export default function AddSchedule({ ...props }) {
           handleToggle:props.handleGameToggle,
           resetSelection : props.resetGameSelection,
           changeResetflag : props.changeGameResetflag,
+          readOnly: isFamilyOrResident
         },
       ],
     },
@@ -53,7 +73,8 @@ export default function AddSchedule({ ...props }) {
           options: props.optionsForGameLevel,
           defaultValue: typeof data !== "undefined" ? data.game_level : "",
           setSearchText:props.handleLevelSearch,
-          handleToggle:props.handleLevelToggle
+          handleToggle:props.handleLevelToggle,
+          readOnly: isFamilyOrResident
         },
       ],
     },
@@ -65,7 +86,8 @@ export default function AddSchedule({ ...props }) {
           inputType: "date",
           handleChange: (val) => {},
           defaultValue:( data && props.timezoneData) ? getCommunityTimeZone({date:data.schedule_start_at, offset: props.timezoneData.timezone_offset}): '',
-          showTime:true
+          showTime:true,
+          readOnly: isFamilyOrResident
         },
       ],
     },
@@ -98,61 +120,60 @@ export default function AddSchedule({ ...props }) {
           handleToggle:props.handleHostIdToggle,
           resetSelection : props.resetHostSelection,
           changeResetflag : props.changeHostResetflag,
+          readOnly: isFamilyOrResident
         },
       ],
     },
-    {
-      label: "Host ID",
-      column: [
-        {
-          name: "host",
-          inputType: "text",
-          readOnly:true,
-          defaultValue: props.hostId
-        },
-      ],
-    },
-    {
-      label: "Meeting ID",
-      isGrayOut : data ? data.is_zoom_game === 1 ? false : true : false,
+    // {
+    //   label: "Host ID",
+    //   column: [
+    //     {
+    //       name: "host",
+    //       inputType: "text",
+    //       readOnly:true,
+    //       defaultValue: props.hostId
+    //     },
+    //   ],
+    // },
+    // {
+    //   label: "Meeting ID",
+    //   isGrayOut : data ? data.is_zoom_game === 1 ? false : true : false,
 
-      column: [
-        {
-          name: "meeting_id",
-          inputType: "text",
-          defaultValue: typeof data !== "undefined" ? data.meeting_id : "",
-          readOnly:true,
+    //   column: [
+    //     {
+    //       name: "meeting_id",
+    //       inputType: "text",
+    //       defaultValue: typeof data !== "undefined" ? data.meeting_id : "",
+    //       readOnly:true,
 
            
 
-        },
-      ],
-    },
-    {
-      label: "Zoom Link",
-      isGrayOut : data ? data.is_zoom_game === 1 ? false : true : false,
+    //     },
+    //   ],
+    // },
+    // {
+    //   label: "Zoom Link",
+    //   isGrayOut : data ? data.is_zoom_game === 1 ? false : true : false,
 
-      column: [
-        {
-          name: "zoom_link",
-          inputType: "text",
-          defaultValue: typeof data !== "undefined" ? data.zoom_link : "",
-          readOnly:true,
+    //   column: [
+    //     {
+    //       name: "zoom_link",
+    //       inputType: "text",
+    //       defaultValue: typeof data !== "undefined" ? data.zoom_link : "",
+    //       readOnly:true,
 
-        },
-      ],
-    },
+    //     },
+    //   ],
+    // },
     {
       label: "Join Link",
-      isGrayOut : data ? data.is_zoom_game === 1 ? false : true : false,
 
       column: [
         {
           name: "join_link",
-          inputType: "link",
+          inputType: "text",
           defaultValue: typeof data !== "undefined" ? data.join_link : "",
-          readOnly:true,
-
+          handleChange: props.handleJoinLink,
         },
       ],
     },
@@ -164,7 +185,8 @@ export default function AddSchedule({ ...props }) {
           inputType: "select",
           title: "Select Custom Spinner Space",
           options: props.optionsForCustomList,
-          defaultValue: typeof data  !== "undefined" ? data.custom_spinner_space : ""
+          defaultValue: typeof data  !== "undefined" ? data.custom_spinner_space : "",
+          readOnly: isFamilyOrResident
         },
       ],
     },
@@ -186,7 +208,8 @@ export default function AddSchedule({ ...props }) {
           defaultValue:data?.players?.find((el=>el.player_order==1))?.[props.allowToEdit?"player_name":"player_id"]||"",
           resetSelection : props.resetPlayerSelection,
           changeResetflag : props.changePlayerResetflag,
-          handleToggle:props.handlePlayerToggle
+          handleToggle:props.handlePlayerToggle,
+          readOnly: isFamilyOrResident
         },
       ],
     },
@@ -196,7 +219,8 @@ export default function AddSchedule({ ...props }) {
         {
           name: "custom_player_name_1",
           inputType: "text",
-          defaultValue:  data?.players?.find((el=>el.player_order==1))?.["player_display_name"]||""
+          defaultValue:  data?.players?.find((el=>el.player_order==1))?.["player_display_name"]||"",
+          readOnly: isFamilyOrResident
         },
       ],
     },
@@ -215,7 +239,8 @@ export default function AddSchedule({ ...props }) {
           defaultValue:  data?.players?.find((el=>el.player_order==2))?.[props.allowToEdit?"player_name":"player_id"]||"",
           resetSelection : props.resetPlayerSelection,
           changeResetflag : props.changePlayerResetflag,
-          handleToggle:props.handlePlayerToggle
+          handleToggle:props.handlePlayerToggle,
+          readOnly: isFamilyOrResident
         },
       ],
     },
@@ -225,7 +250,8 @@ export default function AddSchedule({ ...props }) {
         {
           name: "custom_player_name_2",
           inputType: "text",
-          defaultValue: data?.players?.find((el=>el.player_order==2))?.["player_display_name"]||""
+          defaultValue: data?.players?.find((el=>el.player_order==2))?.["player_display_name"]||"",
+          readOnly: isFamilyOrResident
         },
       ],
     },
@@ -244,7 +270,8 @@ export default function AddSchedule({ ...props }) {
           defaultValue:  data?.players?.find((el=>el.player_order==3))?.[props.allowToEdit?"player_name":"player_id"]||"",
           resetSelection : props.resetPlayerSelection,
           changeResetflag : props.changePlayerResetflag,
-          handleToggle:props.handlePlayerToggle
+          handleToggle:props.handlePlayerToggle,
+          readOnly: isFamilyOrResident
         },
       ],
     },
@@ -254,7 +281,8 @@ export default function AddSchedule({ ...props }) {
         {
           name: "custom_player_name_3",
           inputType: "text",
-          defaultValue: data?.players?.find((el=>el.player_order==3))?.["player_display_name"]||""
+          defaultValue: data?.players?.find((el=>el.player_order==3))?.["player_display_name"]||"",
+          readOnly: isFamilyOrResident
         },
       ],
     },
@@ -273,7 +301,8 @@ export default function AddSchedule({ ...props }) {
           defaultValue:  data?.players?.find((el=>el.player_order==4))?.[props.allowToEdit?"player_name":"player_id"]||"",
           resetSelection : props.resetPlayerSelection,
           changeResetflag : props.changePlayerResetflag,
-          handleToggle:props.handlePlayerToggle
+          handleToggle:props.handlePlayerToggle,
+          readOnly: isFamilyOrResident
         },
       ],
     },
@@ -283,7 +312,8 @@ export default function AddSchedule({ ...props }) {
         {
           name: "custom_player_name_4",
           inputType: "text",
-          defaultValue: data?.players?.find((el=>el.player_order==4))?.["player_display_name"]||""
+          defaultValue: data?.players?.find((el=>el.player_order==4))?.["player_display_name"]||"",
+          readOnly: isFamilyOrResident
         },
       ],
     },
@@ -313,7 +343,7 @@ export default function AddSchedule({ ...props }) {
       type: "submit",
       value: "Save",
       handleButtonClick: props.handleSave,
-      isDisabled:props.allowToEdit
+      isDisabled:props.allowToEdit 
     },
     {
       type: "button",

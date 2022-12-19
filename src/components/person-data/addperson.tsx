@@ -42,8 +42,8 @@ export default function AddPerson({
           name: "email_id",
           inputType: "email",
           defaultValue:  data.email_id ? data.email_id : "",
-          handleOnBlur : handleEmailvalidation
-
+          handleOnBlur : handleEmailvalidation,
+          handleChange : (val) => {}
         },
       ],
     },

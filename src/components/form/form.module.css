@@ -58,7 +58,7 @@
 .link{
   align-self: center;
   overflow: hidden;
-  padding: 1rem;
+  padding: 0.5rem;
   width: 100%;
   max-height: 38px;
   background-color: white!important;

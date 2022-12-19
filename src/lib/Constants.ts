@@ -1,20 +1,19 @@
 const Constants = Object.freeze({
   AppTitle: "Utopia Experiences Care Community",
-  UserPoolId: "us-east-2_H3rUfcn9E",
-  ClientId: "882q77pu733tc2nup6jvvv8hh",
+  UserPoolId: "us-east-2_uLljhLDHh",
+  ClientId: "5p6p0h76p5me0b2ukt9v2ea1m9",
   GameURL: "",
-  rootPath: "/",
   ZoomDummyUrl:
     "",
   BuildID: "00.04.14",
   // API_BASE_PATH: "https://api.juegogames.com/SPINTOPIA_DEV/",
-  API_BASE_PATH: "https://api.utopiaexperiences.cloud/PROD-V1/",
+  API_BASE_PATH: "https://api.utopiaexperiences.cloud/V4/",
   ResponseCodes: {
     Success: 200,
     UserExist:210,
     userNotExists: 1004
   },
-  UE_Business_Path: "https://business.utopiaexperiences.cloud", //TODO : change url to https://business.utopiaexperiences.cloud in production
+  UE_Business_Path: "https://dev.business.utopiaexperiences.cloud", //TODO : change url to https://business.utopiaexperiences.cloud in production
   User_Training_Path: "https://www.training.utopiaexperiences.cloud/",
   contactUsLink: 'https://www.utopiaexperiences.net/contact',
   helpLink: 'https://ue-help-documentation.s3.us-east-2.amazonaws.com/Admin+User+Manual.pdf',
