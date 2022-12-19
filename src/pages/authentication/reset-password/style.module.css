@@ -1,0 +1,112 @@
+.d_flex {
+  display: flex !important;
+  overflow-x: hidden;
+  /* overflow-y: hidden; */
+}
+
+.cr_app {
+  /* height: 100vh; */
+  width: 100vw;
+}
+
+.seperating_line {
+  width: 100%;
+  filter: invert(1);
+  height: 1px;
+}
+
+.row {
+  justify-content: center;
+  align-items: center;
+  background: #00243d;
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.md_5 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 41.666667%;
+  max-width: 41.666667%;
+}
+
+.md_7 {
+  position: relative;
+  width: 100%;
+  flex: 0 0 58.333333%;
+  max-width: 58.333333%;
+}
+
+.top_heading {
+  text-align: center!important;
+  padding-bottom: 1.5rem!important;
+}
+
+.top_heading h3 {
+  text-align: center!important;
+  font-weight: bold;
+  color: rgb(95, 186, 183);
+  text-transform: uppercase;
+}
+
+.card {
+  margin: 0px 0px 0px 1.5rem;
+  position: relative;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-clip: initial;
+}
+
+.card_body {
+  flex: 1 1 auto;
+  padding: 1.25rem;
+  width: 55%; 
+  margin: 0 auto;
+}
+
+@media only screen and (min-width: 600px) {
+  .md_7 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .md_5 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .md_7 {
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+    padding-right: 5vw;
+    padding-left: 5vw;
+  }
+
+  .md_5 {
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+  }
+}
+
+@media only screen and (min-width: 1200px)  {
+  .md_7 {
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+    padding-right: 5vw;
+    padding-left: 5vw;
+  }
+
+  .md_5 {
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+  }
+ }

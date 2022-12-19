@@ -1,0 +1,10 @@
+.content_container {
+  padding: 0.5rem;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+  color: #fff !important;
+}
+
+.appointment {
+  background-color: "#02549A";
+}

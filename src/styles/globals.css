@@ -1,0 +1,594 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  height: 100%;
+  overflow: hidden; /* makes the body non-scrollable (we will add scrolling to the sidebar and main content containers) */
+  /* margin: 0px;  s */
+  /* display: flex;  enables flex content for its children */
+  /* box-sizing: border-box; */
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.logout_btn {
+  cursor: pointer !important;
+  background-image: linear-gradient(
+    to right,
+    #25aae1,
+    #6afacb,
+    #30dd8a,
+    #2bb673
+  ) !important;
+  color: black !important;
+  width: 65% !important;
+  border-radius: 22px !important;
+  border: none !important;
+}
+
+/* .cr-content {
+  width: 100%!important;
+} */
+
+.main-content {
+  /* overflow-y: hidden; */
+  height: 85vh;
+  /* overflow-x: hidden; */
+  overflow: auto;
+}
+
+.main-content::-webkit-scrollbar {
+  width: 6px;
+}
+.main-content::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background: #00243d;
+  border-radius: 10px;
+}
+
+.main-content::-webkit-scrollbar-thumb:hover {
+  background: #00243d;
+}
+
+.index-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.index-container h1 {
+  /* width: 45%; */
+  text-align: center;
+  font-weight: 600;
+  color: #00447c;
+  font-size: 2.5vw;
+}
+
+.container {
+  /* max-width: 1140px; */
+  /* width: calc(100% - 294px); */
+  margin-left: auto;
+  margin-right: auto;
+  margin: 0 1rem 1rem 1rem;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.form_group {
+  margin-bottom: 1rem;
+  justify-content: center;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.form_label {
+  padding-top: calc(0.375rem + 1px);
+  padding-bottom: calc(0.375rem + 1px);
+  margin-bottom: 0;
+  line-height: 1.5;
+  text-align: right !important;
+}
+
+.inline-flex {
+  display: inline-flex;
+}
+
+.col_2 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 12.33%;
+  max-width: 12.33%;
+}
+
+.col_3 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.col_4 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+}
+
+.col_4_5 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 37.5%;
+  max-width: 37.5%;
+}
+
+.col_5 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 41.6666666667%;
+  max-width: 41.6666666667%;
+}
+
+.col_6 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.col_8 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 66.66%;
+  max-width: 66.66%;
+}
+
+.col_9 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.col_10 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 83.3333333333%;
+  max-width: 83.3333333333%;
+}
+
+.col_12 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.text_center {
+  text-align: center;
+}
+.text_start {
+  text-align: start;
+  margin: 0rem 0 0.8rem 2rem;
+  font-size: 1.4rem;
+}
+.bold {
+  font-weight: bold;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+
+.back_button {
+  padding: 0.5rem;
+}
+
+.margin_auto {
+  margin: auto;
+}
+.mx_auto {
+  margin: 0 auto;
+}
+
+.color_navy{
+  color: #00447c;
+}
+
+.form_label {
+  padding-top: calc(0.375rem + 1px);
+  padding-bottom: calc(0.375rem + 1px);
+  margin-bottom: 0;
+  line-height: 1.5;
+  text-align: right !important;
+  font-weight: 500;
+}
+
+hr:not([size]) {
+  background-color: #00243d;
+}
+
+/* sidebar */
+.nav-item .nav-link.active {
+  color: #fff;
+  opacity: 1;
+}
+
+.active {
+  font-weight: 700;
+  color: #fff;
+}
+
+/* end sidebar */
+
+/* page */
+
+.page-content {
+  margin-top: 0.6rem;
+}
+
+.min_h_48 {
+  min-height: 48vh;
+  /* margin-bottom: 2rem; */
+}
+
+/* pagination */
+
+.pagination {
+  margin: 1rem auto 0;
+  display: flex;
+  list-style: none;
+  outline: none;
+  justify-content: center;
+}
+
+.pagination > li {
+  margin-right: 10px;
+}
+
+.pagination > .active > a {
+  background-color: #00447c;
+  color: #fff;
+}
+.pagination > li > a {
+  padding: 4px 8px;
+  outline: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #00243d;
+  outline: none;
+}
+.pagination > li > a,
+.pagination > li > span {
+  color: #00243d;
+}
+.pagination > li:first-child > a,
+.pagination > li:first-child > span,
+.pagination > li:last-child > a,
+.pagination > li:last-child > span {
+  border-radius: unset;
+}
+
+.pagination > li:first-child > a {
+  border-radius: 0px 0px 0px 0px;
+}
+
+.pagination > li:last-child > a {
+  border-radius: 0px 0px 0px 0px;
+}
+
+.pagination > li.previous a,
+.pagination > li.next a {
+  border: none;
+}
+
+.pagination > li:last-child:before {
+  content: "| ";
+}
+.pagination > li:first-child:after {
+  content: "|";
+}
+
+.pagination > li.disabled a > .pagination-btn {
+  color: #777;
+}
+/* end pagination */
+
+/* date picker */
+.react-datepicker {
+  font-family: "Montserrat", sans-serif !important;
+}
+
+.react-datepicker__current-month {
+  background: #00447c;
+  padding: 6px;
+}
+
+.react-datepicker__current-month,
+.react-datepicker-time__header,
+.react-datepicker-year-header {
+  color: #fff !important;
+}
+
+.react-datepicker__header {
+  padding: 0px;
+}
+
+.react-datepicker__triangle {
+  display: none;
+}
+
+.react-datepicker__navigation-icon {
+  top: 0px !important;
+}
+
+.react-datepicker__header {
+  border-top-left-radius: 0rem;
+  padding: 0 0 8px 0 !important;
+  border-bottom: none !important;
+}
+
+.react-datepicker__day-names {
+  background: #fff;
+  font-weight: 700;
+}
+
+.react-datepicker__navigation-icon::before {
+  content: none !important;
+}
+
+.react-datepicker__navigation-icon {
+  margin: 50px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 0;
+}
+
+.react-datepicker__navigation-icon--previous {
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-right: 6px solid #fff;
+}
+
+.react-datepicker__navigation-icon--next {
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+  border-left: 6px solid #fff;
+}
+
+.react-datepicker__day-name {
+  visibility: hidden;
+}
+
+.react-datepicker__day-name::first-letter {
+  visibility: visible;
+}
+
+.react-datepicker__day--keyboard-selected,
+.react-datepicker__day--selected {
+  background-color: #ffcb3f !important;
+  color: #000 !important;
+}
+
+.react-datepicker__input-container input {
+  /* background: url(/calendar-icon.png) no-repeat scroll 90%; */
+  min-height: 38px;
+  border: 0;
+  border-right: 1px solid rgb(204, 204, 204);
+
+  width: 100%;
+}
+
+.react-datepicker__input-container input:focus {
+  outline: none !important;
+}
+
+.input-date-outer-span {
+  display: inline-flex;
+  width: 100%;
+}
+
+.input-group-addon {
+  background: url("/calendar-icon.png") no-repeat scroll 50%;
+
+  color: inherit;
+  font-size: 14px;
+  font-weight: 400;
+  /* padding: 0.6rem 15px; */
+  text-align: center;
+  height: 38px;
+  width: 35px;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+/* Overiting styles of scheduler calender view */
+.MuiToolbar-root,
+.MuiToolbar-regular,
+.Navigator-navigator-783,
+.MuiToolbar-gutters {
+  background-color: #00243d;
+  color: #fff;
+}
+
+.MuiToolbar-regular {
+  min-height: 3rem !important;
+  font-family: "Montserrat", sans-serif;
+}
+
+/* .MuiTableCell-root> span {
+  background-color: #ffcb3f !important;
+  border-radius: 1% !important;
+} */
+.Cell-selected- {
+  background-color: #ffcb3f !important;
+  border-radius: 1% !important;
+}
+
+.MuiSvgIcon-root {
+  color: #fff !important;
+}
+
+.makeStyles-container-8 {
+  overflow-y: none !important;
+}
+
+.makeStyles-background-20 {
+  background-color: #f5f5f5 !important;
+}
+
+.DayScaleEmptyCell-emptyCell-23 {
+  background-color: #f5f5f5 !important;
+}
+
+.MuiTableCell-body {
+  color: red;
+}
+
+/* end of date picker */
+
+span[class^="Cell-selected"] {
+  background-color: #ffcb3f !important;
+  border-radius: 1% !important;
+  color: #00243d;
+}
+
+.Table-table-1409 {
+  width: 300px !important;
+}
+
+td[class^="Cell-cell"] {
+  height: 35px !important;
+}
+
+p[class^="Cell-dayOfWeek"] {
+  color: #00243d;
+  font-family: "Montserrat", sans-serif;
+}
+
+div[class^="jss"],
+p[class^="jss"] {
+  color: #00243d;
+  font-family: "Montserrat", sans-serif;
+}
+
+span[class^="jss"] {
+  color: #00243d;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+
+td[class^="jss"] > span[class^="jss"] {
+  background-color: #ffcb3f !important;
+  border-radius: 1% !important;
+  color: #00243d;
+}
+
+span[class^="Cell-today"] {
+  color: #00243d;
+  font-family: "Montserrat", sans-serif;
+}
+
+div[class^="Cell-dayOfMonth"],
+.MuiButton-label {
+  color: #00243d;
+  font-family: "Montserrat", sans-serif;
+}
+
+span[class^="Label-text"] {
+  color: #00243d;
+  font-family: "Montserrat", sans-serif;
+  font-weight: bold;
+}
+
+.MuiTypography-h6 {
+  font-family: "Montserrat" !important;
+  font-size: 1rem !important;
+}
+
+.MuiTypography-h6,
+.MuiTableBody-root,
+.MuiTableCell-root {
+  font-family: "Montserrat" !important;
+}
+
+.MuiPaper-elevation1 {
+  margin-top: 0.5rem;
+}
+
+
+
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  #section-to-print, #section-to-print * {
+    visibility: visible;
+  }
+  #section-to-print {
+    position: absolute;
+    left: 0;
+    top: 2rem;
+    width: 100%;
+  }
+
+  #hide_view_header{
+    display: none !important;  
+  }
+  
+  #hide_view_cell{
+    display: none !important;
+  }
+  
+  
+
+}

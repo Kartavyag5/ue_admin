@@ -1,0 +1,47 @@
+.row {
+  width: 60%;
+  margin: 0 auto;
+}
+
+.column {
+  float: left;
+  width: calc(50% - 0.5rem);
+  padding: 1rem;
+}
+
+
+.flex_row {
+  display: flex;
+  flex-direction: row;
+}
+
+.mb_1 {
+  margin-bottom: 1rem;
+}
+
+.flex_30 {
+  flex: 0 0 30%;
+  max-width: 30%;
+}
+
+.flex_35{
+  flex: 0 0 calc(65% - 0.5rem);
+  max-width: calc(65% - 0.5rem);
+}
+
+.flex_65{
+  flex: 0 0 calc(65% - 0.5rem);
+  max-width: calc(65% - 0.5rem);
+}
+
+.form_label {
+  padding-top: calc(0.375rem + 1px);
+  padding-bottom: calc(0.375rem + 1px);
+  margin-bottom: 0;
+  line-height: 1.5;
+  text-align: right!important;
+}
+
+.m_auto + .m_auto {
+  margin-left: 1rem;
+}

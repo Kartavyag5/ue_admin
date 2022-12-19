@@ -1,0 +1,74 @@
+.cr_header {
+  /* margin-bottom: 0.5rem; */
+  /* border-bottom: 1px solid #dee2e6; */
+  background-color: #fff !important;
+}
+
+.navbar {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem 1rem 1rem 3rem ;
+}
+
+.navbar_expand {
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+}
+
+.navbar_nav {
+  display: flex;
+  flex-direction: row;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+  /* margin-right: 0.5rem !important; */
+}
+
+/* .logout_btn {
+  display: flex;
+  justify-content: center;
+  background: none;
+  border: none;
+  margin-left: 2rem;
+  margin-right: 3rem;
+  align-self: center;
+}
+
+.logout_text{
+  padding: 0 0.3rem;
+  font-size: 1.1rem;
+  color: #00243d;
+}
+
+.logout_icon{
+  height: 1.2rem;
+  align-self: center;
+} */
+
+.seperating_line {
+  width: 100%;
+  background-color: #00243d;
+  ;
+  /* filter: invert(1); */
+  height: 1px;
+  margin-top: 0px;
+}
+.help_text{
+  margin-left: auto;
+  margin-bottom: 0;
+  align-self: center;
+}
+
+.help_text a{
+  text-decoration: none;
+  color: #00243d;
+
+}
+.help_text a:hover , .logout_text:hover{
+  color: #ffce00;
+}
+.log_out{
+  margin: 0 1rem;
+  align-self: center;
+}

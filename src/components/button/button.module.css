@@ -1,0 +1,28 @@
+.button {
+    width: 100%;
+    padding: 0.4rem 1.5rem;
+    border: none;
+    border-radius: 0.6rem;
+    /* background-color: #00243d; */
+    background-color: #00447c;;
+    color: #fff;
+    white-space: nowrap;
+    text-transform: capitalize;
+}
+
+.button:active ,.button:hover{
+    background-color: #ffce00;
+    color: #000;
+}
+.disabled, .disabled:hover {
+    background-color: #808080;
+    color: #c5c4c4 !important;
+}
+
+.linkStyle , .linkStyle:active , .linkStyle:hover{
+    box-shadow: none;
+    background-color: inherit;
+    border: none;
+    color: #0d6efd;
+    text-decoration: underline;
+}

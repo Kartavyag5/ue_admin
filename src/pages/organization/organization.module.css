@@ -1,0 +1,178 @@
+.container {
+  /* max-width: 1140px; */
+  /* width: calc(100% - 294px); */
+  margin-left: auto;
+  margin-right: auto;
+  margin: 1rem;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.text_center {
+  text-align: center;
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+.back_button {
+  padding: 0.5rem
+}
+
+
+
+.flex_start {
+  justify-content: flex-start;
+}
+
+.flex_end {
+  justify-content: flex-end;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.flex {
+  display: flex;
+  /* flex-wrap: wrap; */
+  flex-direction: row;
+}
+
+.m_auto {
+  margin-left: auto;
+}
+
+.margin_auto {
+  margin: auto;
+}
+
+.mt_2 {
+  margin: 2rem 0;
+}
+
+.mr_2 {
+  margin-right: 1rem;
+}
+
+.mr_4 {
+  margin-right: 1.7rem;
+
+}
+
+.form_group {
+  margin-bottom: 1rem;
+  justify-content: center;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+.form_label {
+  padding-top: calc(0.375rem + 1px);
+  padding-bottom: calc(0.375rem + 1px);
+  margin-bottom: 0;
+  line-height: 1.5;
+  text-align: right!important;
+  font-weight: 500;
+}
+
+.inline_flex {
+  display: inline-flex;
+}
+
+.col_2 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 12.33%;
+  max-width: 12.33%;
+}
+
+.col_3 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 25%;
+  max-width: 25%;
+
+}
+
+.col_4 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 33.33%;
+  max-width: 33.33%;
+}
+
+.col_4_5 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px; 
+  flex: 0 0 37.5%;
+  max-width: 37.5%;
+}
+
+.col_5 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px; 
+  flex: 0 0 41.6666666667%;
+  max-width: 41.6666666667%;
+}
+
+
+.col_6 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.col_8 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 66.66%;
+  max-width: 66.66%;
+}
+
+.col_9 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.col_10 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 83.3333333333%;
+  max-width: 83.3333333333%;
+}
+
+.col_12 {
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+

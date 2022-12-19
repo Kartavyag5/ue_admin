@@ -1,0 +1,75 @@
+.input{
+  /* margin-bottom: 1.25rem; */
+  padding: 0.5rem;
+  width: 100%;
+  max-height: 38px;
+  background-color: white!important;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  Box-shadow: 1.5px 2px 2.5px 0px #00447c;
+}
+.input_check{
+  width: 30px; /*Desired width*/
+  height: 30px; /*Desired height*/
+  cursor: pointer;
+  accent-color: #00447c;
+  border: 1px solid #ccc;
+
+  Box-shadow: 1.5px 2px 2.5px 0px #00447c;
+
+}
+
+.input::-webkit-outer-spin-button,
+.input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.date_picker, .input:focus{
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+  Box-shadow: 1.5px 2px 2.5px 0px #00447c;
+}
+
+
+
+.input[type=number]{
+  -moz-appearance: textfield;
+}
+
+.textArea {
+  height: 8rem;
+  max-height: none;
+}
+
+.daterangeInput {
+  /* border-radius: 0.375rem; */
+  border-width: 1px;
+  /* margin-bottom: 1.25rem; */
+  padding: 0.5rem;
+  width: 50%;
+  border-color: rgb(204, 204, 204);
+}
+
+/* .input:focus {
+  box-shadow: none;
+} */
+.flex{
+  display: flex;
+}
+
+/* .form_control {
+  background-color: #FFFFFF;
+  background-image: none;
+  border: 1px solid #e5e6e7;
+  border-radius: 1px;
+  color: inherit;
+  display: block;
+  padding: 6px 12px;
+  transition: border-color 0.15s ease-in-out 0s, box-shadow 0.15s ease-in-out 0s;
+  width: 100%;
+  font-size: 14px;
+} */
